@@ -36,6 +36,10 @@ footer {
     font-size: smaller;
 }
 
+audio {
+
+}
+
 /* CLASSES */
 
 #btn-flashlight {
@@ -102,6 +106,10 @@ footer {
     margin: 0 0.5rem;
 }
 
+.save {
+    margin-top: 2em;
+}
+
 /* FLASHLIGHT */
 
 #flashlight {
@@ -117,6 +125,45 @@ footer {
     background-color: white;
     mix-blend-mode: soft-light;
     filter: blur(10px);
+}
+
+/* SAVE THE WORLD */
+
+#save {
+    text-align: center;
+}
+
+#spinner, #saved {
+  display: none;
+  cursor: default;
+  margin: 0;
+  padding: 0;
+}
+
+/* COLORS CHANGING */
+
+.logo {
+    -webkit-animation: colors 20s infinite;
+    animation: colors 60s infinite;
+}
+
+@keyframes colors
+{
+    0% {
+        color: var(--color);
+    }
+    16% {
+        color: blue;
+    }
+    50% {
+        color: green;
+    }
+    82% {
+        color: red;
+    }
+    100% {
+        color: car(--color);
+    }
 }
 
 /* DARK MODE */
