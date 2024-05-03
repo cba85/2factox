@@ -40,7 +40,7 @@ function rollTitleTimer() {
 
 function repeat() {
   let repeatText = document.querySelector('.repeat');
-  repeatText.textContent = repeatText.textContent + 'Lab and experiments.' + '\n';
+  repeatText.textContent = repeatText.textContent + 'Lab and experiments. ';
 }
 
 let repeatInterval = setInterval(repeat, 1200);
@@ -194,14 +194,14 @@ document.querySelector("#dont").addEventListener("click", (e) => {
 
     setTimeout((e) => {
       rorchachContainer.textContent = "Goodbye.";
-      rorchachContainer.style.animation = "goodbye 2s infinite";
+      rorchachContainer.style.animation = "goodbye 2s forwards";
 
       rorchachContainer.addEventListener("click", (e) => {
         console.log("click");
         clearTimeout(backToContentTimeout);
         return;
       });
-    }, 5000);
+    }, 4500);
 
     const backToContentTimeout = setTimeout((e) => {
       reset(false);
