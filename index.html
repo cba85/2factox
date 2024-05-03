@@ -1,28 +1,39 @@
 <!DOCTYPE html>
+<!--
+  Find all the easter eggs.
+  Source code is readable and commented.
+  Enjoy, understand how it's done, and be inspired.
+-->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/favicon.ico" />
-  <title>2facto X</title>
-  <meta name="description" content="2facto X: lab and experiments" />
+  <title>2factoX</title>
+  <meta name="description" content="2factoX: lab and experiments" />
   <link rel="stylesheet" href="/style.css">
   <script src="/scripts.js" defer></script>
 </head>
 <body>
-  <div id="flashlight"></div>
+  <!-- LOGO -->
 
-  <h1><span class="logo">2facto X</span> <span class="logo-cursor"></span>
+  <h1>2facto<span class="x">X</span> <span class="logo-cursor"></span>
     <a href="#" class="btn-link" id="btn-flashlight" onclick="flashlight()">🔦</a>
-    <a href="#" class="btn-link" onclick="bodyRotate()">🔄</a>
+    <a href="#" class="btn-link" onclick="bodyRotate()"><img src="/img/rotate.svg" alt="Refresh or rotate?"></a>
   </h1>
 
+  <!-- REPEAT -->
+
   <p class="repeat">Lab and experiments. </p>
+
+  <!-- PODCAST -->
 
   <h2>Podcast</h2>
 
   <p>Listen to my podcast and discover how this website was build!</p>
-  <audio src="/audio/sound.mp4" controls preload autoplay></audio>
+  <audio id="podcast" src="/audio/sound.mp4" controls preload autoplay></audio>
+
+  <!-- SAVE THE WORLD -->
 
   <h2>🌍 ❤️</h2>
 
@@ -38,22 +49,7 @@
     </div>
   </div>
 
-  <h2>Inspirations</h2>
-
-  <ul>
-    <li>Comic Sans MS footer text is inspired by <a href="https://lochieaxon.com">https://lochieaxon.com</a></li>
-    <li>Comic Sans MS pulsate animation is inspired by <a href="https://voussoir.net">https://voussoir.net</a></li>
-    <li><code>h2</code> style is inspired by <a href="https://git-man-page-generator.lokaltog.net">https://git-man-page-generator.lokaltog.net</a></li>
-    <li>Blinking cursor on logo is inpired by <a href="https://joeblu.com">https://joeblu.com</a></li>
-    <li>Rotate button is inspired by <a href="https://grumpy.website">https://grumpy.website</a></li>
-    <li>Flashlight in dark mode is inspired by <a href="https://voussoir.net/writing/browser_in_the_dark">https://voussoir.net/writing/browser_in_the_dark</a></li>
-    <li>Repeated text is inspired by <a href="http://onelongscream.com">http://onelongscream.com</a></li>
-    <li>3D text is inspired by <a href="https://magoni.info">https://magoni.info</a></li>
-    <li>The sound of the website making is inspired by <a href="https://doodybrains.github.io/wwtsoiom">https://doodybrains.github.io/wwtsoiom/</a></li>
-    <li>Save the world is inspired by <a href="https://clickheretosavetheworld.com">https://clickheretosavetheworld.com</a> <em>(but a bit different)</em></li>
-    <li>Changing colors is inspired by <a href="http://jacobejenkins.com">http://jacobejenkins.com</a></li>
-    <li>Dynamic document title is inspired by <a href="https://davidliebermann.de">https://davidliebermann.de</a></li>
-  </ul>
+  <!-- COLOPHON -->
 
   <h2>Colophon</h2>
 
@@ -73,14 +69,59 @@
     <div class="right"><a href="https://www.cloudflare.com/">Cloudflare</a></div>
   </div>
 
+  <!-- LEGAL -->
+
   <h2>Legal</h2>
 
-  <p>No tracking. No cookies. This website will always respect your privacy. I will never collect any personal data from you on this website.</p>
+  <p>No tracking. No cookies. This website will always respect your privacy.</p>
+
+  <!-- WP ADMIN -->
+
+  <h2>/wp_admin</h2>
+
+  <form id="admin" action="">
+    <label for="password">Password:</label>
+    <input type="text" name="password" id="password">
+    <button type="submit">Submit</button>
+    <div class="admin_error">Error Establishing a Database Connection (root password: `internet2024`)</div>
+  </form>
+
+  <div class="hacker">OMG you are a hacker!!!<br>I'm calling the police<br>🚨🚔👮‍♂️</div>
+
+  <audio id="warning_sound" src="audio/warningSound.mp3" type="audio/mpeg"></audio>
+
+  <!-- FLASHLIGHT -->
+
+  <div id="flashlight"></div>
+
+  <!-- FOOTER -->
 
   <footer>
-    <p>© 2024 <a href="https://2facto.com">2facto</a> — <a href="#">Don't click here</a></p>
-    <div class="passion-design">Made with ❤️</div>
-  </footer>
+    <div>
+      © 2024 <a href="https://2facto.com">2facto</a> — <a href="#" id="dont">Don't click here</a>
+    </div>
 
+    <!-- INSPIRATIONS -->
+    <details>
+      <summary>Inspirations</summary>
+      <ol>
+        <li>Comic Sans MS footer text is inspired by <a href="https://lochieaxon.com">https://lochieaxon.com</a></li>
+        <li>Comic Sans MS pulsate animation is inspired by <a href="https://voussoir.net">https://voussoir.net</a></li>
+        <li><code>h2</code> style is inspired by <a href="https://git-man-page-generator.lokaltog.net">https://git-man-page-generator.lokaltog.net</a></li>
+        <li>Blinking cursor on logo is inpired by <a href="https://joeblu.com">https://joeblu.com</a></li>
+        <li>Rotate button is inspired by <a href="https://grumpy.website">https://grumpy.website</a></li>
+        <li>Flashlight in dark mode is inspired by <a href="https://voussoir.net/writing/browser_in_the_dark">https://voussoir.net/writing/browser_in_the_dark</a></li>
+        <li>Repeated text is inspired by <a href="http://onelongscream.com">http://onelongscream.com</a></li>
+        <li>3D text is inspired by <a href="https://magoni.info">https://magoni.info</a></li>
+        <li>The sound of the website making is inspired by <a href="https://doodybrains.github.io/wwtsoiom">https://doodybrains.github.io/wwtsoiom/</a></li>
+        <li>Save the world is inspired by <a href="https://clickheretosavetheworld.com">https://clickheretosavetheworld.com</a> <em>(but a bit different)</em></li>
+        <li>Changing colors is inspired by <a href="http://jacobejenkins.com">http://jacobejenkins.com</a></li>
+        <li>Dynamic document title is inspired by <a href="https://davidliebermann.de">https://davidliebermann.de</a></li>
+      </ul>
+    </details>
+
+    <!-- MADE WITH LOVE -->
+    <p class="passion-design">Made with ❤️</p>
+  </footer>
 </body>
 </html>

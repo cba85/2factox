@@ -31,9 +31,9 @@ function moveFlashlight(event) {
 /* DYNAMIC TITLE */
 
 function rollTitleTimer() {
-  let letters = ["X", "▒"];
+  let letters = ["X", ""];
   let letter = letters[Math.floor(Math.random() * letters.length)];
-  document.title = "2facto " + letter;
+  document.title = "2facto" + letter;
 };
 
 /* REPEAT TEXT */
@@ -43,13 +43,13 @@ function repeat() {
   repeatText.textContent = repeatText.textContent + 'Lab and experiments.' + '\n';
 }
 
-setInterval(repeat, 1200);
+const repeatInterval = setInterval(repeat, 1200);
 
 /* 3D TRANSFORM */
 
-const el = document.querySelector('.repeat');
+const el = document.querySelector('#podcast');
 
-document.documentElement.onmousemove = (e) => {
+el.onmousemove = (e) => {
   el.style.webkitTransform = el.style.transform = 'rotate3d(10, 180, -6, ' + e.pageX / -20 + 'deg)';
 };
 
@@ -81,6 +81,82 @@ document.querySelector("#save").addEventListener('click', (e) => {
     a.dispatchEvent(e);
   }, 3500)
 
+});
+
+/* WP ADMIN */
+
+const admin = document.querySelector("#admin");
+admin.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  if (!admin.password.value) {
+    return;
+  }
+
+  if (admin.password.value == "internet2024") {
+    document.querySelector("#warning_sound").play();
+    console.log("🚨🚔👮‍♂️ OMG YOU ARE A HACKER!!! I'm calling the police!!!");
+    document.querySelector(".admin_error").style.display = "none";
+    document.querySelector(".hacker").style.display = "block";
+    return;
+  }
+
+  admin.password.value = "";
+  document.querySelector(".admin_error").style.display = "block";
+});
+
+/* DON'T CLICK HERE */
+
+document.querySelector("#dont").addEventListener("click", (e) => {
+  e.preventDefault();
+  document.body.removeEventListener("mousemove", moveFlashlight);
+  clearInterval(repeatInterval);
+
+  const body = document.querySelector("body");
+  body.textContent = "";
+  body.style.backgroundColor = "white";
+
+  const rorchachContainer = document.createElement("div");
+  rorchachContainer.className = "rorchach_container";
+
+  const rorchachElement = document.createElement("div");
+  rorchachElement.id = "rorchach";
+
+  const rorchachImage = document.createElement("div");
+  rorchachImage.className = "rorchach_image";
+
+  const rorchachText = document.createElement("div");
+  rorchachText.className = "rorchach_text";
+  rorchachText.textContent = "What do you see?";
+
+  const rorchachForm = document.createElement("form");
+  rorchachText.className = "rorchach_text";
+
+  rorchachForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    rorchachContainer.textContent = "Wrong.";
+
+    setTimeout((e) => {
+      rorchachContainer.textContent = "Goodbye.";
+    }, 2000);
+    
+    console.log("wip");
+  });
+
+  const rorchachInput = document.createElement("input");
+  rorchachInput.id = "rorchach_input";
+  rorchachInput.name = "rorchach_input";
+  rorchachInput.className = "rorchach_text";
+  rorchachInput.type = "text";
+
+  body.appendChild(rorchachContainer);
+  rorchachContainer.appendChild(rorchachElement);
+  rorchachElement.appendChild(rorchachImage);
+  rorchachElement.appendChild(rorchachText);
+  rorchachElement.appendChild(rorchachForm);
+  rorchachForm.appendChild(rorchachInput)
+  rorchachInput.focus();  
 });
 
 /* DOCUMENT READY */

@@ -7,12 +7,19 @@
     --color-code: black;
 }
 
+/* TAGS */
+
+html {
+    height: 100%;
+}
+
 body {
     max-width: 42rem;
+    height: 100%;
     margin: auto;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    padding: 1rem;
-    line-height: 1.5rem;
+    padding: 0.5em;
+    line-height: 1.5em;
     color: var(--color);
     word-break: break-word;
 }
@@ -36,19 +43,31 @@ footer {
     font-size: smaller;
 }
 
-audio {
+details {
+    cursor: pointer;
+}
 
+details > ol {
+    margin: 0;
 }
 
 /* CLASSES */
 
-#btn-flashlight {
-    display: none;
-}
-
 .btn-link {
     text-decoration: none;
     margin: 0 0 0 0.25rem;
+}
+
+/* CURSOR */
+
+.logo-cursor {
+    -webkit-animation: cursor 1.2s infinite;
+    animation: cursor 1.2s infinite;
+    background: var(--color-link);
+    border-radius: 1px;
+    display: inline-block;
+    height: 1.5rem;
+    width: 15px;
 }
 
 @-webkit-keyframes cursor {
@@ -63,15 +82,7 @@ audio {
     to { opacity: 0 }
 }
 
-.logo-cursor {
-    -webkit-animation: cursor 1.2s infinite;
-    animation: cursor 1.2s infinite;
-    background: var(--color-link);
-    border-radius: 1px;
-    display: inline-block;
-    height: 1.5rem;
-    width: 15px;
-}
+/* MADE WITH LOVE */
 
 .passion-design {
     display: inline-block;
@@ -90,6 +101,8 @@ audio {
     100% { transform: rotate(-4deg) scale(1.00); }
 }
 
+/* COLOPHON */
+
 .entry {
     display: flex;
     width: 100%;
@@ -106,11 +119,11 @@ audio {
     margin: 0 0.5rem;
 }
 
-.save {
-    margin-top: 2em;
-}
-
 /* FLASHLIGHT */
+
+#btn-flashlight {
+    display: none;
+}
 
 #flashlight {
     position: fixed;
@@ -142,7 +155,7 @@ audio {
 
 /* COLORS CHANGING */
 
-.logo {
+.x {
     -webkit-animation: colors 20s infinite;
     animation: colors 60s infinite;
 }
@@ -166,7 +179,103 @@ audio {
     }
 }
 
+/* ADMIN FORM */
+
+.admin_error {
+    display: none;
+    color: red;
+    font-size: smaller;
+}
+
+.hacker {
+    display: none;
+    margin-top: 1em;
+    text-align: center;
+    background-color: blue;
+    padding: 0.5em;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 0.3em;
+    border: 7px solid red;
+    text-transform: uppercase;
+    -webkit-animation: blink 0.07s infinite alternate;
+    animation: blink 0.07s infinite alternate;
+}
+
+#warning_sound {
+    display: none;
+}
+
+@keyframes blink {
+    0% {
+        background-color: red;
+        border-color: blue;
+    }
+
+    100% {
+        background-color: blue;
+        border-color: red;
+    }
+}
+
+/* DON'T CLICK */
+
+.rorchach_container {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.rorchach_container input {
+    outline: none;
+    border: none;
+} 
+
+#rorchach {
+    width: 100%;
+}
+
+.rorchach_image {
+    width: 100%;
+    height: 450px;
+    background: url("img/inkBlob.webp") no-repeat center center;
+    -webkit-animation: rorchachImage forwards 5s;
+    animation: rorchachImage forwards 5s;
+}
+
+@keyframes rorchachImage {
+    0% {
+        background: url("img/inkBlob.webp") no-repeat center center;
+    }
+
+    100% {
+        background: url("img/inkBlob2.webp") no-repeat center center;
+    }
+}
+
+.rorchach_text {
+    -webkit-animation: rorchachText forwards 7s;
+    animation: rorchachText forwards 7s;
+}
+
+@keyframes rorchachText {
+    0% {
+        opacity: 0;
+    }
+
+    75% {
+        opacity: 0;
+    }
+
+    100% {
+     opacity: 1;
+ }
+}
+
 /* DARK MODE */
+
 @media (prefers-color-scheme: dark) {
     :root {
         --color: white;
