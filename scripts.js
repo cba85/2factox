@@ -93,7 +93,7 @@ admin.addEventListener("submit", (e) => {
     return;
   }
 
-  if (admin.password.value == "internet2024") {
+  if (admin.password.value.toLowerCase() == "internet2024") {
     document.querySelector("#warning_sound").play();
     console.log("🚨🚔👮‍♂️ OMG YOU ARE A HACKER!!! I'm calling the police!!!");
     document.querySelector(".admin_error").style.display = "none";
@@ -140,6 +140,11 @@ document.querySelector("#dont").addEventListener("click", (e) => {
     setTimeout((e) => {
       rorchachContainer.textContent = "Goodbye.";
     }, 2000);
+
+    setTimeout((e) => {
+      rorchachContainer.textContent = "";
+      body.style.animation = "rorchachEnd 0.1s infinite"
+    }, 4000);
     
     console.log("wip");
   });
@@ -153,10 +158,15 @@ document.querySelector("#dont").addEventListener("click", (e) => {
   body.appendChild(rorchachContainer);
   rorchachContainer.appendChild(rorchachElement);
   rorchachElement.appendChild(rorchachImage);
-  rorchachElement.appendChild(rorchachText);
-  rorchachElement.appendChild(rorchachForm);
-  rorchachForm.appendChild(rorchachInput)
-  rorchachInput.focus();  
+
+  setTimeout((e) => {
+    rorchachElement.appendChild(rorchachText);
+    rorchachElement.appendChild(rorchachForm);
+    rorchachForm.appendChild(rorchachInput)
+    rorchachInput.focus();
+  }, 5000);
+
+  
 });
 
 /* DOCUMENT READY */

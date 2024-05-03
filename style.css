@@ -256,8 +256,8 @@ details > ol {
 }
 
 .rorchach_text {
-    -webkit-animation: rorchachText forwards 7s;
-    animation: rorchachText forwards 7s;
+    -webkit-animation: rorchachText forwards 2s;
+    animation: rorchachText forwards 2s;
 }
 
 @keyframes rorchachText {
@@ -265,13 +265,15 @@ details > ol {
         opacity: 0;
     }
 
-    75% {
-        opacity: 0;
-    }
-
     100% {
      opacity: 1;
  }
+}
+
+@keyframes rorchachEnd {
+    to {
+        background-color: black;
+    }
 }
 
 /* DARK MODE */
