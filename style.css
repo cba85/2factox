@@ -1,10 +1,11 @@
-/* LIGHT/DARK MODE */
+/* LIGHT MODE */
 
 :root {
     --color: black;
     --color-link: #0000EE;
     --color-h2: black;
     --color-code: black;
+    --backgound-color: white;
 }
 
 /* TAGS */
@@ -199,7 +200,6 @@ details > ol {
     font-weight: bold;
     letter-spacing: 0.2em;
     line-height: 2.5em;
-    border: 7px solid red;
     text-transform: uppercase;
     display: flex;
     align-items: center;
@@ -215,18 +215,17 @@ details > ol {
 @keyframes blink {
     0% {
         background-color: red;
-        border-color: blue;
     }
 
     100% {
         background-color: blue;
-        border-color: red;
     }
 }
 
 /* DON'T CLICK */
 
 .rorchach_container {
+    color: black;
     text-align: center;
     display: flex;
     align-items: center;
@@ -235,8 +234,9 @@ details > ol {
 }
 
 .rorchach_container input {
+    color: black;
     outline: none;
-    border: none;
+    border: 1px solid black;
 } 
 
 #rorchach {
@@ -262,18 +262,19 @@ details > ol {
 }
 
 .rorchach_text {
-    -webkit-animation: rorchachText forwards 2s;
-    animation: rorchachText forwards 2s;
+    color: black;
+    -webkit-animation: fadeIn forwards 2s;
+    animation: fadeIn forwards 2s;
 }
 
-@keyframes rorchachText {
+@keyframes fadeIn {
     0% {
         opacity: 0;
     }
 
     100% {
-     opacity: 1;
- }
+       opacity: 1;
+   }
 }
 
 @keyframes rorchachEnd {
@@ -282,7 +283,7 @@ details > ol {
     }
 }
 
-@keyframes goodbye {
+@keyframes fadeOut {
     0% {
         opacity: 1;
     }
@@ -303,7 +304,7 @@ details > ol {
 
     body {
       filter: invert (100%);
-      background-color: rgb(29, 32, 31) !important;
+      background-color: rgb(29, 32, 31);
       color: var(--color);
   }
 

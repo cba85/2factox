@@ -36,15 +36,6 @@ function rollTitleTimer() {
   document.title = "2facto" + letter;
 };
 
-/* REPEAT TEXT */
-
-function repeat() {
-  let repeatText = document.querySelector('.repeat');
-  repeatText.textContent = repeatText.textContent + 'Lab and experiments. ';
-}
-
-let repeatInterval = setInterval(repeat, 1200);
-
 /* 3D TRANSFORM */
 
 const el = document.querySelector('#podcast');
@@ -96,50 +87,36 @@ function reset(toggle = true) {
  setInterval(repeat, 1200);
 }
 
-/* WP ADMIN */
-
-const admin = document.querySelector("#admin");
-admin.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  if (!admin.password.value) {
-    return;
-  }
-
-  if (admin.password.value.toLowerCase() == "internet2024") {
-    reset();
-
-    document.querySelector("#warning_sound").play();
-    document.body.className = "hacker";
-    document.body.textContent = "";
-
-    let response;
-
-    try {
-      response = await fetch("https://ipinfo.io/json").then((response) => { return response.json() });
-    } catch (error) {}
-
-    const hackerElement = document.createElement("h1");
-    hackerElement.innerHTML = `OMG you are a hacker!!!<br>`;
-
-    if (response) {
-      hackerElement.innerHTML = hackerElement.innerHTML + `I have your ip address: ${response.ip}<br>I know where you live !!! You live in ${response.city}<br>`;
-    }
-
-    hackerElement.innerHTML = hackerElement.innerHTML + `I'm calling the police<br>🚨🚔👮‍♂️`;
-    document.body.appendChild(hackerElement);
-
-    console.log("Yes, I've remove everything. That's why, my hacker friend, you have to reload the page.");
-    return;
-  }
-
-  admin.password.value = "";
-  document.querySelector(".admin_error").style.display = "block";
-});
+/* CSS VARIABLES */
+const cssVariables = getComputedStyle(document.querySelector(":root"));
+const backgroundColor = cssVariables.getPropertyValue('--background-color');
 
 /* DON'T CLICK HERE */
 
-document.querySelector("#dont").addEventListener("click", (e) => {
+function addText(text, options = {}) {
+  const rorchachContainer =  document.querySelector(".rorchach_container");
+
+  let newText = "";
+
+  if (options.concat) {
+    newText = rorchachContainer.innerHTML + " " + text;
+  } else {
+    newText = text;
+  }
+
+  if (options.timeout) {
+    timeout += options.timeout;
+    setTimeout((e) => {
+      rorchachContainer.innerHTML = newText;
+    }, timeout);
+  } else {
+    rorchachContainer.innerHTML = newText;
+  }
+}
+
+let timeout = 0;
+
+function dontClick(e) {
   e.preventDefault();
   reset();
 
@@ -182,30 +159,52 @@ document.querySelector("#dont").addEventListener("click", (e) => {
 
     localStorage.setItem("rorchach", value);
 
-    rorchachContainer.textContent = "Interesting...";
+    addText("Interesting...");
+    addText("But wrong.", { concat: true, timeout: 1500 });
+    addText("You don't qualify.", { timeout: 1500 });
 
     setTimeout((e) => {
-      rorchachContainer.textContent = rorchachContainer.textContent + " But wrong.";
-    }, 1500);
+      addText("Goodbye.");
+      rorchachContainer.style.animation = "fadeOut 2s forwards";
 
-    setTimeout((e) => {
-      rorchachContainer.textContent = "You don't qualify.";
-    }, 3000);
-
-    setTimeout((e) => {
-      rorchachContainer.textContent = "Goodbye.";
-      rorchachContainer.style.animation = "goodbye 2s forwards";
-
-      rorchachContainer.addEventListener("click", (e) => {
-        console.log("click");
+      rorchachContainer.addEventListener("click", async (e) => {
         clearTimeout(backToContentTimeout);
-        return;
+        rorchachContainer.style.animation = "none";
+        timeout = 0;
+        addText("");
+        addText("You're here.", { timeout: 5000 });
+        addText("Then...", { concat: true, timeout: 2000 });
+
+        let response;
+        try {
+          response = await fetch("https://ipinfo.io/json").then((response) => { return response.json() });
+        } catch (error) {}
+
+        if (response) {
+          addText(`How is the weater in ${response.city}?`, { timeout: 2000 });
+          addText(`Yes.`, { timeout: 3000 });
+          addText(`I know where you live.`, { concat: true, timeout: 2000 });
+          addText(`Oh I'm sorry.`, { timeout: 3000 });
+          addText(`I forgot to introduce myself...`, { concat: true, timeout: 2000 });
+          addText(`Hello.`, { timeout: 2000 });
+
+          setTimeout(() => {
+            body.style.backgroundColor = "black";
+            rorchachContainer.style.color = "white";
+            rorchachContainer.style.fontWeight = "bold";
+          }, timeout + 2000);
+          addText(`I'm DarkGPT`, { timeout: 2000 });
+        } else {
+          console.log('ok');
+        }
       });
     }, 4500);
 
     const backToContentTimeout = setTimeout((e) => {
       reset(false);
+      timeout = 0;
       rorchachContainer.remove();
+      body.style.backgroundColor = backgroundColor;
       container.style.display = "block";
       //body.style.animation = "rorchachEnd 0.1s infinite"
     }, 6500);
@@ -227,7 +226,28 @@ document.querySelector("#dont").addEventListener("click", (e) => {
     rorchachForm.appendChild(rorchachInput)
     rorchachInput.focus();
   }, 4000);
-});
+}
+
+/* REPEAT TEXT */
+
+function repeat() {
+  let repeatText = document.querySelector('.repeat');
+
+  if (repeatCounter == 10) {
+    const dont = document.createElement("a");
+    dont.id = "dont";
+    dont.href = "#";
+    dont.textContent = "Don't click here";
+    dont.addEventListener("click", dontClick, false);
+    document.querySelector('.repeat').parentElement.append(dont);
+  }
+
+  repeatText.innerHTML = repeatText.innerHTML + 'Lab and experiments. ';
+  repeatCounter++;
+}
+
+let repeatCounter = 1;
+let repeatInterval = setInterval(repeat, 1200);
 
 /* DOCUMENT READY */
 
