@@ -15,114 +15,113 @@
   <script src="/scripts.js" defer></script>
 </head>
 <body>
-  <!-- LOGO -->
+  <div class="container">
+    <!-- LOGO -->
+    <h1>2facto<span class="x">X</span> <span class="logo-cursor"></span>
+      <a href="#" class="btn-link" id="btn-flashlight" onclick="flashlight()">🔦</a>
+      <a href="#" class="btn-link" onclick="bodyRotate()"><img src="/img/rotate.svg" alt="Refresh or rotate?"></a>
+    </h1>
 
-  <h1>2facto<span class="x">X</span> <span class="logo-cursor"></span>
-    <a href="#" class="btn-link" id="btn-flashlight" onclick="flashlight()">🔦</a>
-    <a href="#" class="btn-link" onclick="bodyRotate()"><img src="/img/rotate.svg" alt="Refresh or rotate?"></a>
-  </h1>
+    <p>Lab and experiments. </p>
 
-  <p>Lab and experiments. </p>
+    <!-- PODCAST -->
 
-  <!-- PODCAST -->
+    <h2>Podcast</h2>
 
-  <h2>Podcast</h2>
+    <p>Listen to my podcast and discover how this website was build!</p>
+    <audio id="podcast" src="/audio/sound.mp4" controls preload autoplay></audio>
 
-  <p>Listen to my podcast and discover how this website was build!</p>
-  <audio id="podcast" src="/audio/sound.mp4" controls preload autoplay></audio>
+    <!-- SAVE THE WORLD -->
 
-  <!-- SAVE THE WORLD -->
+    <h2>🌍 ❤️</h2>
 
-  <h2>🌍 ❤️</h2>
+    <div id="save">
+      <a href="#" id="world">Click here to save the world</a>
 
-  <div id="save">
-    <a href="#" id="world">Click here to save the world</a>
-
-    <div id="spinner">
-      <img src="/img/spinner.gif" width="40px">
-      <div>Saving the world... Please wait...</div>
-    </div>
-    <div id="saved">
-      <span>Saved</span>
-    </div>
-  </div>
-
-  <!-- COLOPHON -->
-
-  <h2>Colophon</h2>
-
-  <div class="entry">
-    <div class="left">Languages</div>
-    <div class="dots"></div>
-    <div class="right">HTML + CSS + JS</div>
-  </div>
-  <div class="entry">
-    <div class="left">Server</div>
-    <div class="dots"></div>
-    <div class="right"><a href="https://pages.cloudflare.com/">Cloudflare Pages</a></div>
-  </div>
-  <div class="entry">
-    <div class="left">DNS</div>
-    <div class="dots"></div>
-    <div class="right"><a href="https://www.cloudflare.com/">Cloudflare</a></div>
-  </div>
-
-  <!-- LEGAL -->
-
-  <h2>Legal</h2>
-
-  <p>No tracking. No cookies. This website will always respect your privacy.</p>
-
-  <!-- WP ADMIN -->
-
-  <h2>/wp_admin</h2>
-
-  <form id="admin" action="">
-    <label for="password">Password:</label>
-    <input type="text" name="password" id="password">
-    <button type="submit">Submit</button>
-    <div class="admin_error">Error Establishing a Database Connection (root password: `internet2024`)</div>
-  </form>
-
-  <div class="hacker">OMG you are a hacker!!!<br>I'm calling the police<br>🚨🚔👮‍♂️</div>
-
-  <audio id="warning_sound" src="audio/warningSound.mp3" type="audio/mpeg"></audio>
-
-  <!-- FLASHLIGHT -->
-
-  <div id="flashlight"></div>
-
-  <!-- FOOTER -->
-
-  <footer>
-    <div>
-      © 2024 <a href="https://2facto.com">2facto</a> — <a href="#" id="dont">Don't click here</a>
+      <div id="spinner">
+        <img src="/img/spinner.gif" width="40px">
+        <div>Saving the world... Please wait...</div>
+      </div>
+      <div id="saved">
+        <span>Saved</span>
+      </div>
     </div>
 
-    <!-- INSPIRATIONS -->
-    <details>
-      <summary>Inspirations</summary>
-      <ol>
-        <li>Comic Sans MS footer text is inspired by <a href="https://lochieaxon.com">https://lochieaxon.com</a></li>
-        <li>Comic Sans MS pulsate animation is inspired by <a href="https://voussoir.net">https://voussoir.net</a></li>
-        <li><code>h2</code> style is inspired by <a href="https://git-man-page-generator.lokaltog.net">https://git-man-page-generator.lokaltog.net</a></li>
-        <li>Blinking cursor on logo is inpired by <a href="https://joeblu.com">https://joeblu.com</a></li>
-        <li>Rotate button is inspired by <a href="https://grumpy.website">https://grumpy.website</a></li>
-        <li>Flashlight in dark mode is inspired by <a href="https://voussoir.net/writing/browser_in_the_dark">https://voussoir.net/writing/browser_in_the_dark</a></li>
-        <li>Repeated text is inspired by <a href="http://onelongscream.com">http://onelongscream.com</a></li>
-        <li>3D text is inspired by <a href="https://magoni.info">https://magoni.info</a></li>
-        <li>The sound of the website making is inspired by <a href="https://doodybrains.github.io/wwtsoiom">https://doodybrains.github.io/wwtsoiom/</a></li>
-        <li>Save the world is inspired by <a href="https://clickheretosavetheworld.com">https://clickheretosavetheworld.com</a> <em>(but a bit different)</em></li>
-        <li>Changing colors is inspired by <a href="http://jacobejenkins.com">http://jacobejenkins.com</a></li>
-        <li>Dynamic document title is inspired by <a href="https://davidliebermann.de">https://davidliebermann.de</a></li>
-      </ul>
-    </details>
+    <!-- COLOPHON -->
 
-    <!-- MADE WITH LOVE -->
-    <p class="passion-design">Made with ❤️</p>
+    <h2>Colophon</h2>
 
-    <!-- REPEAT -->
-    <p class="repeat">Lab and experiments. </p>
-  </footer>
+    <div class="entry">
+      <div class="left">Languages</div>
+      <div class="dots"></div>
+      <div class="right">HTML + CSS + JS</div>
+    </div>
+    <div class="entry">
+      <div class="left">Server</div>
+      <div class="dots"></div>
+      <div class="right"><a href="https://pages.cloudflare.com/">Cloudflare Pages</a></div>
+    </div>
+    <div class="entry">
+      <div class="left">DNS</div>
+      <div class="dots"></div>
+      <div class="right"><a href="https://www.cloudflare.com/">Cloudflare</a></div>
+    </div>
+
+    <!-- LEGAL -->
+
+    <h2>Legal</h2>
+
+    <p>No tracking. No cookies. This website will always respect your privacy.</p>
+
+    <!-- WP ADMIN -->
+
+    <h2>/wp_admin</h2>
+
+    <form id="admin" action="">
+      <label for="password">Password:</label>
+      <input type="text" name="password" id="password">
+      <button type="submit">Submit</button>
+      <div class="admin_error">Error Establishing a Database Connection (root password: `internet2024`)</div>
+    </form>
+
+    <audio id="warning_sound" src="audio/warningSound.mp3" type="audio/mpeg"></audio>
+
+    <!-- FLASHLIGHT -->
+
+    <div id="flashlight"></div>
+
+    <!-- FOOTER -->
+
+    <footer>
+      <div>
+        © 2024 <a href="https://2facto.com">2facto</a> — <a href="#" id="dont">Don't click here</a>
+      </div>
+
+      <!-- INSPIRATIONS -->
+      <details>
+        <summary>Inspirations</summary>
+        <ol>
+          <li>Comic Sans MS footer text is inspired by <a href="https://lochieaxon.com">https://lochieaxon.com</a></li>
+          <li>Comic Sans MS pulsate animation is inspired by <a href="https://voussoir.net">https://voussoir.net</a></li>
+          <li><code>h2</code> style is inspired by <a href="https://git-man-page-generator.lokaltog.net">https://git-man-page-generator.lokaltog.net</a></li>
+          <li>Blinking cursor on logo is inpired by <a href="https://joeblu.com">https://joeblu.com</a></li>
+          <li>Rotate button is inspired by <a href="https://grumpy.website">https://grumpy.website</a></li>
+          <li>Flashlight in dark mode is inspired by <a href="https://voussoir.net/writing/browser_in_the_dark">https://voussoir.net/writing/browser_in_the_dark</a></li>
+          <li>Repeated text is inspired by <a href="http://onelongscream.com">http://onelongscream.com</a></li>
+          <li>3D text is inspired by <a href="https://magoni.info">https://magoni.info</a></li>
+          <li>The sound of the website making is inspired by <a href="https://doodybrains.github.io/wwtsoiom">https://doodybrains.github.io/wwtsoiom/</a></li>
+          <li>Save the world is inspired by <a href="https://clickheretosavetheworld.com">https://clickheretosavetheworld.com</a> <em>(but a bit different)</em></li>
+          <li>Changing colors is inspired by <a href="http://jacobejenkins.com">http://jacobejenkins.com</a></li>
+          <li>Dynamic document title is inspired by <a href="https://davidliebermann.de">https://davidliebermann.de</a></li>
+        </ul>
+      </details>
+
+      <!-- MADE WITH LOVE -->
+      <p class="passion-design">Made with ❤️</p>
+
+      <!-- REPEAT -->
+      <p class="repeat">Lab and experiments. </p>
+    </footer>
+  </div>
 </body>
 </html>

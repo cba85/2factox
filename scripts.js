@@ -43,7 +43,7 @@ function repeat() {
   repeatText.textContent = repeatText.textContent + 'Lab and experiments.' + '\n';
 }
 
-const repeatInterval = setInterval(repeat, 1200);
+let repeatInterval = setInterval(repeat, 1200);
 
 /* 3D TRANSFORM */
 
@@ -83,10 +83,23 @@ document.querySelector("#save").addEventListener('click', (e) => {
 
 });
 
+/* RESET */
+
+function reset(toggle = true) {
+  if (toggle) {
+   document.body.removeEventListener("mousemove", moveFlashlight);
+   clearInterval(repeatInterval);
+   return;
+ }
+
+ document.body.addEventListener("mousemove", moveFlashlight);
+ setInterval(repeat, 1200);
+}
+
 /* WP ADMIN */
 
 const admin = document.querySelector("#admin");
-admin.addEventListener("submit", (e) => {
+admin.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   if (!admin.password.value) {
@@ -94,10 +107,29 @@ admin.addEventListener("submit", (e) => {
   }
 
   if (admin.password.value.toLowerCase() == "internet2024") {
+    reset();
+
     document.querySelector("#warning_sound").play();
-    console.log("🚨🚔👮‍♂️ OMG YOU ARE A HACKER!!! I'm calling the police!!!");
-    document.querySelector(".admin_error").style.display = "none";
-    document.querySelector(".hacker").style.display = "block";
+    document.body.className = "hacker";
+    document.body.textContent = "";
+
+    let response;
+
+    try {
+      response = await fetch("https://ipinfo.io/json").then((response) => { return response.json() });
+    } catch (error) {}
+
+    const hackerElement = document.createElement("h1");
+    hackerElement.innerHTML = `OMG you are a hacker!!!<br>`;
+
+    if (response) {
+      hackerElement.innerHTML = hackerElement.innerHTML + `I have your ip address: ${response.ip}<br>I know where you live !!! You live in ${response.city}<br>`;
+    }
+
+    hackerElement.innerHTML = hackerElement.innerHTML + `I'm calling the police<br>🚨🚔👮‍♂️`;
+    document.body.appendChild(hackerElement);
+
+    console.log("Yes, I've remove everything. That's why, my hacker friend, you have to reload the page.");
     return;
   }
 
@@ -109,11 +141,12 @@ admin.addEventListener("submit", (e) => {
 
 document.querySelector("#dont").addEventListener("click", (e) => {
   e.preventDefault();
-  document.body.removeEventListener("mousemove", moveFlashlight);
-  clearInterval(repeatInterval);
+  reset();
 
   const body = document.querySelector("body");
-  body.textContent = "";
+  const container = document.querySelector(".container");
+
+  container.style.display = "none";
   body.style.backgroundColor = "white";
 
   const rorchachContainer = document.createElement("div");
@@ -129,24 +162,53 @@ document.querySelector("#dont").addEventListener("click", (e) => {
   rorchachText.className = "rorchach_text";
   rorchachText.textContent = "What do you see?";
 
+  const value = localStorage.getItem("rorchach");
+
+  if (value) {
+    rorchachText.innerHTML = rorchachText.textContent + `<br>Last time you've said "${value}"`;
+  }
+
   const rorchachForm = document.createElement("form");
   rorchachText.className = "rorchach_text";
 
   rorchachForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    rorchachContainer.textContent = "Wrong.";
+    const value = rorchachInput.value;
+
+    if (!value) {
+      return;
+    }
+
+    localStorage.setItem("rorchach", value);
+
+    rorchachContainer.textContent = "Interesting...";
+
+    setTimeout((e) => {
+      rorchachContainer.textContent = rorchachContainer.textContent + " But wrong.";
+    }, 1500);
+
+    setTimeout((e) => {
+      rorchachContainer.textContent = "You don't qualify.";
+    }, 3000);
 
     setTimeout((e) => {
       rorchachContainer.textContent = "Goodbye.";
-    }, 2000);
+      rorchachContainer.style.animation = "goodbye 2s infinite";
 
-    setTimeout((e) => {
-      rorchachContainer.textContent = "";
-      body.style.animation = "rorchachEnd 0.1s infinite"
-    }, 4000);
-    
-    console.log("wip");
+      rorchachContainer.addEventListener("click", (e) => {
+        console.log("click");
+        clearTimeout(backToContentTimeout);
+        return;
+      });
+    }, 5000);
+
+    const backToContentTimeout = setTimeout((e) => {
+      reset(false);
+      rorchachContainer.remove();
+      container.style.display = "block";
+      //body.style.animation = "rorchachEnd 0.1s infinite"
+    }, 6500);
   });
 
   const rorchachInput = document.createElement("input");
@@ -164,9 +226,7 @@ document.querySelector("#dont").addEventListener("click", (e) => {
     rorchachElement.appendChild(rorchachForm);
     rorchachForm.appendChild(rorchachInput)
     rorchachInput.focus();
-  }, 5000);
-
-  
+  }, 4000);
 });
 
 /* DOCUMENT READY */
