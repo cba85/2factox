@@ -204,15 +204,15 @@ details > ol {
     display: flex;
     align-items: center;
     justify-content: center;
-    -webkit-animation: blink 0.07s infinite alternate;
-    animation: blink 0.07s infinite alternate;
+    -webkit-animation: police 0.07s infinite alternate;
+    animation: police 0.07s infinite alternate;
 }
 
 #warning_sound {
     display: none;
 }
 
-@keyframes blink {
+@keyframes police {
     0% {
         background-color: red;
     }
@@ -222,7 +222,22 @@ details > ol {
     }
 }
 
-/* DON'T CLICK */
+/* DON'T CLICK HERE */
+
+#dont {
+    -webkit-animation: blink 10s step-end infinite;
+    animation: blink 10s step-end infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+}
+
+15% {
+    opacity: 0;
+}
+}
 
 .rorchach_container {
     color: black;
@@ -273,8 +288,8 @@ details > ol {
     }
 
     100% {
-       opacity: 1;
-   }
+     opacity: 1;
+ }
 }
 
 @keyframes rorchachEnd {

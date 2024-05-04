@@ -38,10 +38,10 @@ function rollTitleTimer() {
 
 /* 3D TRANSFORM */
 
-const el = document.querySelector('#podcast');
+const podcast = document.querySelector('#podcast');
 
-el.onmousemove = (e) => {
-  el.style.webkitTransform = el.style.transform = 'rotate3d(10, 180, -6, ' + e.pageX / -20 + 'deg)';
+podcast.onmousemove = (e) => {
+  podcast.style.webkitTransform = podcast.style.transform = 'rotate3d(10, 180, -6, ' + e.pageX / -20 + 'deg)';
 };
 
 /* SAVE THE WORLD */
@@ -53,9 +53,11 @@ document.querySelector("#save").addEventListener('click', (e) => {
   const spinner = document.querySelector("#spinner");
   const saved = document.querySelector("#saved")
 
+  // Loading: display spinner
   world .style.display = "none";
   spinner.style.display = "block";
 
+  // Download file
   setTimeout(() => {
     spinner.style.display = "none";
     saved.style.display = "block";
@@ -88,18 +90,41 @@ function reset(toggle = true) {
 }
 
 /* CSS VARIABLES */
+
 const cssVariables = getComputedStyle(document.querySelector(":root"));
 const backgroundColor = cssVariables.getPropertyValue('--background-color');
 
 /* DON'T CLICK HERE */
 
+// Create input element with options
+function createInputElement(options = {}) {
+  const input = document.createElement("input");
+
+  if (options.id) {
+    input.id = options.id;
+  } 
+
+  if (options.name) {
+    input.name = options.name;
+  } 
+
+  if (options.className) {
+    input.className = options.className;
+  } 
+
+  input.type = "text";
+
+  return input;
+}
+
+// Add text 
 function addText(text, options = {}) {
-  const rorchachContainer =  document.querySelector(".rorchach_container");
+  const container =  document.querySelector(".rorchach_container");
 
   let newText = "";
 
   if (options.concat) {
-    newText = rorchachContainer.innerHTML + " " + text;
+    newText = container.innerHTML + " " + text;
   } else {
     newText = text;
   }
@@ -107,47 +132,57 @@ function addText(text, options = {}) {
   if (options.timeout) {
     timeout += options.timeout;
     setTimeout((e) => {
-      rorchachContainer.innerHTML = newText;
+      container.innerHTML = newText;
     }, timeout);
   } else {
-    rorchachContainer.innerHTML = newText;
+    container.innerHTML = newText;
   }
 }
 
 let timeout = 0;
 
+// Don't click here
 function dontClick(e) {
   e.preventDefault();
   reset();
 
+  // Update page style
   const body = document.querySelector("body");
   const container = document.querySelector(".container");
-
   container.style.display = "none";
   body.style.backgroundColor = "white";
 
+  // Rorchach container
   const rorchachContainer = document.createElement("div");
   rorchachContainer.className = "rorchach_container";
 
+  // Parent div
   const rorchachElement = document.createElement("div");
   rorchachElement.id = "rorchach";
 
+  // Image element
   const rorchachImage = document.createElement("div");
   rorchachImage.className = "rorchach_image";
 
+  // Text div element
   const rorchachText = document.createElement("div");
   rorchachText.className = "rorchach_text";
   rorchachText.textContent = "What do you see?";
 
-  const value = localStorage.getItem("rorchach");
+  // Input element
+  const rorchachInput = createInputElement({ id: "rorchach_input", name: "rorchach_input", className: "rorchach_text" });
 
+  // Display previous rorash answer using localstorage
+  const value = localStorage.getItem("rorchach");
   if (value) {
     rorchachText.innerHTML = rorchachText.textContent + `<br>Last time you've said "${value}"`;
   }
 
+  // Form
   const rorchachForm = document.createElement("form");
-  rorchachText.className = "rorchach_text";
+  rorchachForm.className = "rorchach_text";
 
+  // Submit
   rorchachForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -157,49 +192,55 @@ function dontClick(e) {
       return;
     }
 
+    // Save answer in localstorage to display it next time
     localStorage.setItem("rorchach", value);
 
     addText("Interesting...");
     addText("But wrong.", { concat: true, timeout: 1500 });
     addText("You don't qualify.", { timeout: 1500 });
 
+    // Goodbye
     setTimeout((e) => {
       addText("Goodbye.");
       rorchachContainer.style.animation = "fadeOut 2s forwards";
 
+      // Click: don't goodbye and continue
       rorchachContainer.addEventListener("click", async (e) => {
         clearTimeout(backToContentTimeout);
         rorchachContainer.style.animation = "none";
         timeout = 0;
         addText("");
-        addText("You're here.", { timeout: 5000 });
+        addText("You're still here.", { timeout: 5000 });
         addText("Then...", { concat: true, timeout: 2000 });
 
+        // Get client ip address
         let response;
         try {
           response = await fetch("https://ipinfo.io/json").then((response) => { return response.json() });
         } catch (error) {}
 
+        // Display client information
         if (response) {
           addText(`How is the weater in ${response.city}?`, { timeout: 2000 });
           addText(`Yes.`, { timeout: 3000 });
           addText(`I know where you live.`, { concat: true, timeout: 2000 });
-          addText(`Oh I'm sorry.`, { timeout: 3000 });
-          addText(`I forgot to introduce myself...`, { concat: true, timeout: 2000 });
-          addText(`Hello.`, { timeout: 2000 });
-
-          setTimeout(() => {
-            body.style.backgroundColor = "black";
-            rorchachContainer.style.color = "white";
-            rorchachContainer.style.fontWeight = "bold";
-          }, timeout + 2000);
-          addText(`I'm DarkGPT`, { timeout: 2000 });
-        } else {
-          console.log('ok');
         }
+
+        // Hello
+        addText(`Oh I'm sorry.`, { timeout: 3000 });
+        addText(`I forgot to introduce myself...`, { concat: true, timeout: 2000 });
+        addText(`Hello.`, { timeout: 2000 });
+
+        setTimeout(() => {
+          body.style.backgroundColor = "black";
+          rorchachContainer.style.color = "white";
+          rorchachContainer.style.fontWeight = "bold";
+        }, timeout + 2000);
+        addText(`I'm DarkGPT`, { timeout: 2000 });
       });
     }, 4500);
 
+    // Back to website content
     const backToContentTimeout = setTimeout((e) => {
       reset(false);
       timeout = 0;
@@ -210,16 +251,12 @@ function dontClick(e) {
     }, 6500);
   });
 
-  const rorchachInput = document.createElement("input");
-  rorchachInput.id = "rorchach_input";
-  rorchachInput.name = "rorchach_input";
-  rorchachInput.className = "rorchach_text";
-  rorchachInput.type = "text";
-
+  // Create rorchach container, element and directly display image
   body.appendChild(rorchachContainer);
   rorchachContainer.appendChild(rorchachElement);
   rorchachElement.appendChild(rorchachImage);
 
+  // Display text and form
   setTimeout((e) => {
     rorchachElement.appendChild(rorchachText);
     rorchachElement.appendChild(rorchachForm);
@@ -251,9 +288,7 @@ let repeatInterval = setInterval(repeat, 1200);
 
 /* DOCUMENT READY */
 
-function onPageload() {
+document.addEventListener("DOMContentLoaded", () => {
   document.body.addEventListener("mousemove", moveFlashlight);
   let rollTitle = setInterval(rollTitleTimer, 250);
-}
-
-document.addEventListener("DOMContentLoaded", onPageload);
+});
