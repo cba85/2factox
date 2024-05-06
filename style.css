@@ -162,6 +162,8 @@ details > ol {
 /* SAVE THE WORLD */
 
 #save {
+    padding: 1em 0;
+    border: 1px solid;
     text-align: center;
 }
 
@@ -325,6 +327,14 @@ details > ol {
     100% {
         opacity: 0;
     }
+}
+
+/* FRONTEND OR BACKEND */
+
+#decide {
+    display: none;
+    font-size: 3em;
+    font-weight: bold;
 }
 
 /* DARK MODE */
