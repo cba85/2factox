@@ -25,6 +25,11 @@ body {
     word-break: break-word;
 }
 
+h1 {
+    font-size: 2em;
+    font-weight: 400;
+}
+
 h2 {
     background-color: #eee;
     padding: 0.25rem 1rem;
@@ -42,6 +47,7 @@ footer {
     border-top: 1px dotted var(--color);
     margin: 2rem 0 0 0;
     font-size: smaller;
+    padding: 1em 0;
 }
 
 details {
@@ -61,6 +67,14 @@ details > ol {
 .btn-link {
     text-decoration: none;
     margin: 0 0 0 0.25rem;
+}
+
+.redacted {
+    width: 7em;
+    height: 1em; 
+    background-color: #393939;
+    position: relative;
+    top: 0.15em;
 }
 
 /* CURSOR */
@@ -151,6 +165,10 @@ details > ol {
     text-align: center;
 }
 
+#world {
+    font-weight: bold;
+}
+
 #spinner, #saved {
   display: none;
   cursor: default;
@@ -163,6 +181,7 @@ details > ol {
 .x {
     -webkit-animation: colors 20s infinite;
     animation: colors 60s infinite;
+    font-weight: bold;
 }
 
 @keyframes colors
