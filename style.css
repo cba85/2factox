@@ -75,6 +75,7 @@ details > ol {
     background-color: #393939;
     position: relative;
     top: 0.15em;
+    display: inline-block;
 }
 
 /* CURSOR */
@@ -309,8 +310,8 @@ details > ol {
     }
 
     100% {
-     opacity: 1;
- }
+       opacity: 1;
+   }
 }
 
 @keyframes rorchachEnd {
